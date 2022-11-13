@@ -6,7 +6,7 @@ const Inicio = () => {
     return (
       <div class="container">
         <div class="row mx-auto text-center">
-          <div class="col-2">
+          <div class="col-1">
             <Link to={"/Cocina"}>
               <button class='botonRegresar'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back" width="50" height="50" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -18,7 +18,6 @@ const Inicio = () => {
             <h1 class="fs-1">COCINAR</h1>
           </div>
         </div>
-        <br />
         <br />
         <div class="row mx-auto text-center btn-group btn-group-justified">
           <button class='botonSeccionC fs-4 btn btn-outline-light btn-light colorOscuro'>Canela<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="100" height="100" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
