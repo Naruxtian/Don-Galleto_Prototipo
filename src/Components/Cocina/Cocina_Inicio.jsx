@@ -7,7 +7,7 @@ const Inicio = () => {
     <div class="container">
       <div class="row mx-auto text-center">
         <div class="col-2">
-          <Link to={"/Inicio"}>
+          <Link to={"/"}>
             <button class='botonRegresar'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back" width="50" height="50" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1"></path>
@@ -23,16 +23,16 @@ const Inicio = () => {
       <div class="row mx-auto">
         <div class="col-4">
           <h2>ALMACEN</h2>
-          <Link to={"/Almacen"}>
-            <button class='botonSeccionM'><svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+          <Link to={"/Cocina/Almacen"}>
+            <button class='botonSeccion'><svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
               <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
             </svg></button>
           </Link>
         </div>
         <div class="col-4">
           <h2>COCINAR</h2>
-        <Link to={"/Cocinar"}>
-        <button class='botonSeccionM'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="150" height="150" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <Link to={"/Cocina/Cocinar"}>
+        <button class='botonSeccion'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="150" height="150" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M8 13v.01"></path>
             <path d="M12 17v.01"></path>
@@ -45,8 +45,8 @@ const Inicio = () => {
         </div>
         <div class="col-4">
           <h2>PROVISIONES</h2>
-        <Link to={"/Provisiones"}>
-            <button class='botonSeccionM'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bus" width="150" height="150" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <Link to={"/Cocina/Provisiones"}>
+            <button class='botonSeccion'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bus" width="150" height="150" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <circle cx="6" cy="17" r="2"></circle>
                 <circle cx="18" cy="17" r="2"></circle>
