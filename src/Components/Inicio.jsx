@@ -3,6 +3,35 @@ import { Link } from "react-router-dom";
 import '../App.css'
 
 const Inicio = () => {
+
+  const inicializarDatos = () => {
+    localStorage.setItem("galletas",[
+      {Nombre: "Canela", Cantidad: 300},
+      {Nombre: "Mantequilla", Cantidad: 300},
+      {Nombre: "Chocolate", Cantidad: 300},
+      {Nombre: "Pasas y avena", Cantidad: 300},
+      {Nombre: "Rellena de naranja", Cantidad: 300},
+      {Nombre: "Integral", Cantidad: 300},
+      {Nombre: "Mantequilla con fresa", Cantidad: 300},
+      {Nombre: "Chocolate con nueces", Cantidad: 300},
+      {Nombre: "Chocolate sin gluten", Cantidad: 300},
+      {Nombre: "Rellena de natilla", Cantidad: 300},
+    ])
+    
+    localStorage.setItem("ingredientes",[
+      {Nombre: "Harina", Cantidad: 30, Cuantidad:"Kg"},
+      {Nombre: "Leche", Cantidad: 10, Cuantidad:"L"},
+      {Nombre: "Huevo", Cantidad: 10, Cuantidad:"Kg"},
+      {Nombre: "Aceite", Cantidad: 15, Cuantidad:"L"},
+      {Nombre: "Chocolate", Cantidad: 8, Cuantidad:"Kg"},
+      {Nombre: "Pasas", Cantidad: 10, Cuantidad:"Kg"},
+      {Nombre: "Avena", Cantidad: 15, Cuantidad:"Kg"},
+      {Nombre: "Mermelada", Cantidad: 10, Cuantidad:"Kg"},
+      {Nombre: "Natilla", Cantidad: 5, Cuantidad:"Kg"},
+    ])
+
+  }
+
   return (
     <div class="container">
       <div class="row mx-auto text-center">
@@ -26,6 +55,7 @@ const Inicio = () => {
           </svg></button></Link>
         </div>
       </div>
+      <button onClick={inicializarDatos()}></button>
     </div>
   )
 }
