@@ -5,6 +5,7 @@ import '../App.css'
 const Inicio = () => {
 
   const inicializarDatos = () => {
+    
     localStorage.setItem("galletas",JSON.stringify([
       {Nombre: "Canela", Cantidad: 300},
       {Nombre: "Mantequilla", Cantidad: 300},
@@ -20,16 +21,17 @@ const Inicio = () => {
     
     localStorage.setItem("productos",JSON.stringify([
       {Nombre: "Harina", Cantidad: 30, Cuantidad:"Kg"},
-      {Nombre: "Leche", Cantidad: 10, Cuantidad:"L"},
-      {Nombre: "Huevo", Cantidad: 10, Cuantidad:"Kg"},
+      {Nombre: "Leche", Cantidad: 12, Cuantidad:"L"},
+      {Nombre: "Huevo", Cantidad: 25, Cuantidad:"Kg"},
       {Nombre: "Aceite", Cantidad: 15, Cuantidad:"L"},
       {Nombre: "Chocolate", Cantidad: 8, Cuantidad:"Kg"},
-      {Nombre: "Pasas", Cantidad: 10, Cuantidad:"Kg"},
+      {Nombre: "Pasas", Cantidad: 11, Cuantidad:"Kg"},
       {Nombre: "Avena", Cantidad: 15, Cuantidad:"Kg"},
       {Nombre: "Mermelada", Cantidad: 10, Cuantidad:"Kg"},
       {Nombre: "Natilla", Cantidad: 5, Cuantidad:"Kg"},
     ]))
 
+    console.log("Datos Inicializados")
   }
 
   return (
@@ -55,7 +57,7 @@ const Inicio = () => {
           </svg></button></Link>
         </div>
       </div>
-      <button onClick={inicializarDatos()}></button>
+      <button onClick={() => {inicializarDatos()}}></button>
     </div>
   )
 }
