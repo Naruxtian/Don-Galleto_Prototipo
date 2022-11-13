@@ -1,5 +1,4 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -19,6 +18,7 @@
   width: 20rem;
   height: 20rem;
 }
+
 .botonSeccion2 {
   border: 1px solid black;
   border-radius: 10px;
@@ -40,7 +40,7 @@
   font-size: 16px;
   cursor: pointer;
   padding: 1px;
-  width: 50px;
+  width: 150px;
   height: 50px;
   float: right;
 }
@@ -85,4 +85,95 @@
   padding: 1px;
   width: 50px;
   height: 50px;
+}
+
+
+
+
+.botonSeccionM {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 15rem;
+  height: 15rem;
+}
+
+.botonSeccionC {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 10rem;
+  height: 15rem;
+}
+
+.botonRegresar{
+  border: 1px solid black;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 1px;
+  width: 50px;
+  height: 50px;
+}
+
+.botonHistorial{
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 1px;
+  width: 150px;
+  height: 50px;
+}
+
+.botonBasura{
+  background-color: #E93838;
+}
+
+.colorOscuro{
+  color: black;
+}
+
+.selectTamaño{
+  width: 100px;
+}
+
+.inputTamaño{
+  width: 60px;
+}
+
+.inputTamaño2{
+  width: 80px;
+}
+
+.divTamaño{
+  float: left;
+}
+
+.divTamaño2{
+  float: right;
+}
+
+.divPosicion{
+  height:50px;
+    width:400px;
+     margin:0px auto;
 }

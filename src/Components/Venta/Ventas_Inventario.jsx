@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import '../../App.css'
 
 const Inventario = () => {
-    const crud = () => {
-        const [merma, setMerma] = React.useState(false);
-    }
+const [merma, setMerma] = React.useState(true);
+
     return (
         <div class="container">
             <div class="row mx-auto">
@@ -56,10 +55,18 @@ const Inventario = () => {
                         <button class='botonSeccion2'>Rellenas de natilla<br />(GALLETA)<br />125</button>
                     </div>
                     <div class="col-12 merma">
-                        <button class='botonMerma'>Mermar(GALLETA)</button>
+                        <button class='botonMermar'>Mermar(GALLETA)</button>
                     </div>
                 </div>
-
+                {
+                    merma ? (
+                        <div class="row mx-auto">
+                        </div>
+                    ) : (   
+                        <div class="row mx-auto">
+                    </ div>
+                    )
+                }
 
             </div>
 
