@@ -5,7 +5,7 @@ import '../App.css'
 const Inicio = () => {
 
   const inicializarDatos = () => {
-    localStorage.setItem("galletas",[
+    localStorage.setItem("galletas",JSON.stringify([
       {Nombre: "Canela", Cantidad: 300},
       {Nombre: "Mantequilla", Cantidad: 300},
       {Nombre: "Chocolate", Cantidad: 300},
@@ -16,9 +16,9 @@ const Inicio = () => {
       {Nombre: "Chocolate con nueces", Cantidad: 300},
       {Nombre: "Chocolate sin gluten", Cantidad: 300},
       {Nombre: "Rellena de natilla", Cantidad: 300},
-    ])
+    ]))
     
-    localStorage.setItem("ingredientes",[
+    localStorage.setItem("productos",JSON.stringify([
       {Nombre: "Harina", Cantidad: 30, Cuantidad:"Kg"},
       {Nombre: "Leche", Cantidad: 10, Cuantidad:"L"},
       {Nombre: "Huevo", Cantidad: 10, Cuantidad:"Kg"},
@@ -28,7 +28,7 @@ const Inicio = () => {
       {Nombre: "Avena", Cantidad: 15, Cuantidad:"Kg"},
       {Nombre: "Mermelada", Cantidad: 10, Cuantidad:"Kg"},
       {Nombre: "Natilla", Cantidad: 5, Cuantidad:"Kg"},
-    ])
+    ]))
 
   }
 
