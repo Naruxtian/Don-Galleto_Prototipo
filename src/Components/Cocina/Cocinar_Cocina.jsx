@@ -17,7 +17,7 @@ const Inicio = () => {
 
     React.useEffect(() => {
         obtenerGalletas()
-        localStorage.removeItem('galleta')
+        localStorage.removeItem('galletaCocinar')
     }, [])
 
     const cocinarGalleta = () => { 

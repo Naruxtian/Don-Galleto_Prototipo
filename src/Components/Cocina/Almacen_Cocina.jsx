@@ -22,10 +22,15 @@ const Inicio = () => {
         products.forEach(producto => {
             if(producto.Nombre === nombre){
                 if(producto.Cantidad >= merma){
-                producto.Cantidad = producto.Cantidad - merma;
+                    producto.Cantidad = producto.Cantidad - merma;  
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Producto mermado',
+                        text: 'Se realizó la merma del producto correctamente', 
+                      })
                 }else{
                     MySwal.fire({
-                        title: <strong>Imposible</strong>,
+                        title: <strong>Error</strong>,
                         html: <i>No puedes mermar mas producto del que hay en inventario</i>,
                         icon: 'error'
                     })     
@@ -88,7 +93,7 @@ const Inicio = () => {
                                     <tr class={alert} >
                                         <td>{producto.Nombre}</td>
                                         <td>{producto.Cantidad} {producto.Cuantidad}</td>
-                                        <td><input type="number" 
+                                        <td><input type="number" min="0"
                                         onChange={(e) => {merma = e.target.value}}/>
                                         <button class="botonBasura"
                                         onClick={() => mermarProducto(producto.Nombre, merma)}>
