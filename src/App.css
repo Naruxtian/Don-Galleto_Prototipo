@@ -5,6 +5,10 @@
   background-color: rgb(199, 150, 105);
 }
 
+
+.container {
+  background-color: rgb(199, 150, 105);
+}
 @font-face {
   font-family: "LEMONMILK-Regular";
   src: local("LEMONMILK-Regular"), url("assets/LEMONMILK-Regular.otf");
@@ -81,6 +85,29 @@ input {
   height: 10rem;
   align-items: center;
 }
+/* card de seleciones en ventas*/
+.botonSeccion2Modificado {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer;
+  width: 10rem;
+  height: 12rem;
+  align-items: center;
+  background-color: rgb(199, 150, 105);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.inputMermas{
+  width: 3rem;
+}
+/*-----------------------------------*/
 
 .botonMermar{
   text-align: center;
@@ -93,6 +120,30 @@ input {
   float: right;
 }
 
+/*estilos  para la seleccion de mermas en inventario ventas*/
+.groupMerma {
+  float: right;
+}
+.botonCancelarMerma{
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 1px;
+  width: 150px;
+  height: 50px;
+  margin-right: 10px;
+}
+.botonAceptarMerma{
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 1px;
+  width: 150px;
+  height: 50px;
+}
+/*-------------------------------------------------*/
 .merma{
   float: left;
 }
@@ -103,7 +154,10 @@ input {
 }
 
 .carrito{
-  float:right,
+  /*float:right,*/
+  align-items: center;
+  background-color: salmon;
+  height: 100vh;
 }
 .botonOpcion{
   align-self: center;
