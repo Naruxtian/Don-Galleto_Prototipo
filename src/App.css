@@ -157,7 +157,11 @@
 }
 
 .inputTamaño{
-  width: 60px;
+  font-size: 1.5rem;
+  background: none;
+  width: 5rem;
+  text-align: center;
+  border: none;
 }
 
 .inputTamaño2{
@@ -176,4 +180,8 @@
   height:50px;
     width:400px;
      margin:0px auto;
+}
+
+.listaIngredientes{
+  background: none
 }

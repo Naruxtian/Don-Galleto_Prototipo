@@ -68,8 +68,7 @@ const Inicio = () => {
                     <h1 class="fs-1">ALMACEN</h1>
                 </div>
             </div>
-            <br />
-            <br />
+        
             <div class="row mx-auto">
                 <table class="table table-bordered">
                     <thead class="table-dark">

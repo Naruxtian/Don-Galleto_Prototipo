@@ -29,6 +29,7 @@ const Inicio = () => {
       {Nombre: "Avena", Cantidad: 15, Cuantidad:"Kg"},
       {Nombre: "Mermelada", Cantidad: 10, Cuantidad:"Kg"},
       {Nombre: "Natilla", Cantidad: 5, Cuantidad:"Kg"},
+      {Nombre: "Mantequilla", Cantidad: 13, Cuantidad:"Kg"},
     ]))
 
     console.log("Datos Inicializados")
