@@ -21,14 +21,26 @@ const Inicio = () => {
         products = JSON.parse(localStorage.getItem('productos'));
         products.forEach(producto => {
             if(producto.Nombre === nombre){
+                if(merma >= 0){
                 if(producto.Cantidad >= merma){
-                producto.Cantidad = producto.Cantidad - merma;
+                    producto.Cantidad = producto.Cantidad - merma;  
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Producto mermado',
+                        text: 'Se realizó la merma del producto correctamente', 
+                      })
                 }else{
                     MySwal.fire({
-                        title: <strong>Imposible</strong>,
+                        title: <strong>Error</strong>,
                         html: <i>No puedes mermar mas producto del que hay en inventario</i>,
                         icon: 'error'
                     })     
+                }}else{
+                    MySwal.fire({
+                        title: <strong>Error</strong>,
+                        html: <i>La merma no puede ser un numero negativo</i>,
+                        icon: 'error'
+                    })  
                 }
             }
         });
@@ -68,8 +80,7 @@ const Inicio = () => {
                     <h1 class="fs-1">ALMACEN</h1>
                 </div>
             </div>
-            <br />
-            <br />
+        
             <div class="row mx-auto">
                 <table class="table table-bordered">
                     <thead class="table-dark">
@@ -89,7 +100,7 @@ const Inicio = () => {
                                     <tr class={alert} >
                                         <td>{producto.Nombre}</td>
                                         <td>{producto.Cantidad} {producto.Cuantidad}</td>
-                                        <td><input type="number" 
+                                        <td><input type="number" min="0"
                                         onChange={(e) => {merma = e.target.value}}/>
                                         <button class="botonBasura"
                                         onClick={() => mermarProducto(producto.Nombre, merma)}>

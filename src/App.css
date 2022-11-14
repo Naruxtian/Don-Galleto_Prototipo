@@ -9,6 +9,54 @@
 .container {
   background-color: rgb(199, 150, 105);
 }
+@font-face {
+  font-family: "LEMONMILK-Regular";
+  src: local("LEMONMILK-Regular"), url("assets/LEMONMILK-Regular.otf");
+}
+@font-face {
+  font-family: "Roboto-Light";
+  src: local("Roboto-Light"), url("assets/Roboto-Light.ttf");
+}
+h1 {
+  font-family: "LEMONMILK-Regular";
+}
+h2 {
+  font-family: "LEMONMILK-Regular";
+}
+h3 {
+  font-family: "LEMONMILK-Regular";
+}
+h4 {
+  font-family: "LEMONMILK-Regular";
+}
+h5 {
+  font-family: "LEMONMILK-Regular";
+}
+h6 {
+  font-family: "LEMONMILK-Regular";
+}
+p {
+  font-family: "Roboto-Light";
+}
+div {
+  font-family: "Roboto-Light";
+}
+button {
+  font-family: "Roboto-Light";
+}
+table {
+  font-family: "Roboto-Light";
+}
+li {
+  font-family: "Roboto-Light";
+}
+ul{
+  font-family: "Roboto-Light";
+}
+input {
+  font-family: "Roboto-Light";
+}
+
 .botonSeccion {
   border: 1px solid black;
   border-radius: 10px;
@@ -21,7 +69,7 @@
   cursor: pointer;
   width: 20rem;
   height: 20rem;
-}
+  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;}
 
 .botonSeccion2 {
   border: 1px solid black;
@@ -139,10 +187,8 @@
   padding: 1px;
   width: 50px;
   height: 50px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
-
-
-
 
 .botonSeccionM {
   border: 1px solid black;
@@ -207,11 +253,15 @@
 }
 
 .selectTamaño{
-  width: 100px;
+  width: 15rem;
 }
 
 .inputTamaño{
-  width: 60px;
+  font-size: 1.5rem;
+  background: none;
+  width: 5rem;
+  text-align: center;
+  border: none;
 }
 
 .inputTamaño2{
@@ -231,3 +281,35 @@
     width:400px;
      margin:0px auto;
 }
+
+.listaIngredientes{
+  background: none
+}
+
+.divProveedores{
+  float: left;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0 4rem;
+  border: 2px solid black;
+ 
+}
+
+.containerProveedor{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.inputProvision{
+  width: 5rem;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid black;
+  background: none;
+}
+
