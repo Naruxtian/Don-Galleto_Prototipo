@@ -8,15 +8,24 @@ const Inicio = () => {
     const [galleta, setGalleta] = React.useState("")
     const [lotes, setLotes] = React.useState(1)
     const [ingredientes, setIngredientes] = React.useState([])
-
+    const [productos, setProductos] = React.useState([])
+    const [disabled, setDisabled] = React.useState(false)
 
     const obtnGalleta = () => {
         const galleta = JSON.parse(localStorage.getItem('galletaCocinar'));
         setGalleta(galleta);
     }
 
+    const obtenerProductos = () => {
+        let products = [];
+        products = JSON.parse(localStorage.getItem('productos'));
+
+        setProductos(products);
+    }
+
     React.useEffect(() => {
         obtnGalleta()     
+        obtenerProductos()
     }, [])
 
     const aumentarLotes = () => {
@@ -30,6 +39,8 @@ const Inicio = () => {
     }
 
     const calcularIngredientes = () => {
+        const MySwal = withReactContent(Swal)
+
         const harina = lotes * 1;
         const azucar = lotes * .5;
         const mantequilla = lotes * .25;
@@ -47,6 +58,28 @@ const Inicio = () => {
         ]
 
         setIngredientes(ings)
+        let vd = 0;
+        ings.forEach(ingrediente => {
+            productos.forEach(producto => {
+                if(ingrediente.Nombre === producto.Nombre){
+                    if(ingrediente.Cantidad >= producto.Cantidad){
+                        const nombre = ingrediente.Nombre;
+                        vd ++;
+                        MySwal.fire({
+                            icon: 'error',
+                            title: 'Imposible',
+                            html: <i>No hay suficiente {nombre} para realizar esa cantidad de lotes</i>,
+                          })
+                    }
+                }
+            });
+        });
+
+        if(vd !== 0){
+            setDisabled(true)
+        }else{
+            setDisabled(false)
+        }
     }
 
     const agregarInventario = () => {
@@ -76,6 +109,7 @@ const Inicio = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                 agregarInventario();
+                restarIngredientes();
                 let timerInterval
                 Swal.fire({
                 title: 'Exito',
@@ -101,6 +135,21 @@ const Inicio = () => {
                 })
             }
           })
+    }
+
+    const restarIngredientes = () => {
+        let productos = [];
+        productos = JSON.parse(localStorage.getItem('productos'));
+
+        productos.forEach(product => {
+            ingredientes.forEach(ing => {
+                if(product.Nombre === ing.Nombre){
+                    product.Cantidad = product.Cantidad - ing.Cantidad;
+                }
+            });
+        });
+
+        localStorage.setItem('productos', JSON.stringify(productos));
     }
 
     React.useEffect(() => {
@@ -170,7 +219,7 @@ const Inicio = () => {
                             <path d="M9 8h6"></path>
                         </svg>Receta</button> <br /> <br />
                         <button class='fs-4 btn btn-outline-sucess btn-success colorOscuro'
-                        data-bs-toggle="modal" data-bs-target="#CocinandoModal"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="100" height="100" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        data-bs-toggle="modal" data-bs-target="#CocinandoModal" disabled={disabled}><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="100" height="100" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M8 13v.01"></path>
                             <path d="M12 17v.01"></path>
