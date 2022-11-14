@@ -57,6 +57,27 @@ input {
   font-family: "Roboto-Light";
 }
 
+/*----------------------------------------*/
+
+.divSeccion {
+  border-radius: 5px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 20rem;
+  height: 20rem;
+  background-color: #fff;
+ }
+
+
+
+
+/*--------------------------------------------*/
+
 .botonSeccion {
   border: 1px solid black;
   border-radius: 10px;
@@ -156,7 +177,7 @@ input {
 .carrito{
   /*float:right,*/
   align-items: center;
-  background-color: salmon;
+  background-color: rgb(255, 255, 255);
   height: 100vh;
 }
 .botonOpcion{

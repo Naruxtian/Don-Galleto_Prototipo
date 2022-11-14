@@ -15,8 +15,9 @@ const Ventas = () => {
     const [cantidad, setCantidad] = React.useState("")
 
     const [listCarrito,setListCarrito]= React.useState([]);
+    const [total,setTotal]= React.useState([]);
 
-    
+    const [opcDescuento, setOpcDescuento] = React.useState(false);
 
     const obtenerGalletas = async () => {
         let galletas = [];
@@ -49,7 +50,26 @@ const Ventas = () => {
 
    const obtenerCarrito = ()=>{
     setListCarrito(JSON.parse(localStorage.getItem('carrito')))
+    obtenerTotal();
    }
+
+
+   const removeItemCarrito = (nombre) =>{
+    let carrito = JSON.parse(localStorage.getItem('carrito'));
+    let carritoFiltrado = carrito.filter((item)=>item.Nombre !== nombre);
+    localStorage.setItem('carrito', JSON.stringify(carritoFiltrado));
+    obtenerCarrito();
+
+   }
+
+   const obtenerTotal = ()=>{
+    let nTotal = 0;
+    listCarrito.map((galletaCar) => {
+       nTotal=nTotal+(galletaCar.Costo*1)
+    })
+     setTotal(nTotal)
+    }
+   
 
     React.useEffect(() => {
         //dividirGalletas()
@@ -62,7 +82,7 @@ const Ventas = () => {
     }, [nomGalletaSel])
 
     React.useEffect(() => {
-
+    obtenerTotal();
     }, [listCarrito])
 
     React.useEffect(() => {
@@ -115,6 +135,12 @@ const Ventas = () => {
     }
 
    const realizarVenta = () => {
+    let venta=[];
+    let carrito=[];
+    carrito = listCarrito;
+    venta = JSON.parse(localStorage.getItem('venta'));
+    
+
     //localStorage.setItem('carrito', "nose");	
     localStorage.setItem("carrito",JSON.stringify([{Nombre:"Canela",
       Cantidad: 2,
@@ -195,7 +221,7 @@ const Ventas = () => {
                 </div>
                 <div class="col-4">
                     <h2>{nomGalletaSel}</h2>
-                    <button class='botonSeccion'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="200" height="200" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <div class='divSeccion'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="200" height="200" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M8 13v.01"></path>
                         <path d="M12 17v.01"></path>
@@ -203,7 +229,7 @@ const Ventas = () => {
                         <path d="M16 14v.01"></path>
                         <path d="M11 8v.01"></path>
                         <path d="M13.148 3.476l2.667 1.104a4 4 0 0 0 4.656 6.14l.053 .132a3 3 0 0 1 0 2.296c-.497 .786 -.838 1.404 -1.024 1.852c-.189 .456 -.409 1.194 -.66 2.216a3 3 0 0 1 -1.624 1.623c-1.048 .263 -1.787 .483 -2.216 .661c-.475 .197 -1.092 .538 -1.852 1.024a3 3 0 0 1 -2.296 0c-.802 -.503 -1.419 -.844 -1.852 -1.024c-.471 -.195 -1.21 -.415 -2.216 -.66a3 3 0 0 1 -1.623 -1.624c-.265 -1.052 -.485 -1.79 -.661 -2.216c-.198 -.479 -.54 -1.096 -1.024 -1.852a3 3 0 0 1 0 -2.296c.48 -.744 .82 -1.361 1.024 -1.852c.171 -.413 .391 -1.152 .66 -2.216a3 3 0 0 1 1.624 -1.623c1.032 -.256 1.77 -.476 2.216 -.661c.458 -.19 1.075 -.531 1.852 -1.024a3 3 0 0 1 2.296 0z"></path>
-                    </svg></button><br />
+                    </svg></div><br />
                     <div class="row">
                         <div class="row mx-auto">
                             <div class="col-7">
@@ -248,7 +274,14 @@ const Ventas = () => {
                                 listCarrito.map((listcar) => {
                                     return (
                                         <>
-                                            <li class="list-group-item">{listcar.Nombre} {listcar.Cantidad} {listcar.Medida} ${listcar.Costo}</li>
+                                            <li class="list-group-item">{listcar.Nombre} {listcar.Cantidad} {listcar.Medida} ${listcar.Costo}
+                                            <button class="botonBasura" style={{marginLeft:"10px"}}
+                                            onClick={() => removeItemCarrito(listcar.Nombre)}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                            </svg></button>
+                                            </li>
                                         </> 
                                     )
                                 })
@@ -260,16 +293,19 @@ const Ventas = () => {
                                 <label>galleta piezas precio</label> */}
                             </div>
                             <div>
-                                <div>
+                                {
+                                opcDescuento&&(
+                                <div class="mt-2">
                                     <h5>Descuento: $</h5>
                                     <input type="number" />
                                 </div>
-                                <div>
-                                    <h5>Subtotal: $ null</h5>
-                                    <h4>Total: $ null</h4>
+                                )
+                                  }
+                                <div class="mt-2">
+                                    <h4>Total: $ {total}</h4>
                                 </div>
                                 <div class="mb-5">
-                                    <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-percent" viewBox="0 0 16 16">
+                                    <button onClick={(e)=>{setOpcDescuento(true)}}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-percent" viewBox="0 0 16 16">
                                         <path d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
                                     </svg></button>
                                     <button onClick={(e)=>{realizarVenta()}}>Vender <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
