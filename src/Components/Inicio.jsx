@@ -8,7 +8,7 @@ const Inicio = () => {
     
     localStorage.setItem("galletas",JSON.stringify([
       {Nombre: "Canela", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
-      {Nombre: "Mantequilla", Cantidad: 300,PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Mantequilla", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
       {Nombre: "Chocolate", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
       {Nombre: "Pasas y avena", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
       {Nombre: "Rellena de naranja", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
@@ -18,6 +18,11 @@ const Inicio = () => {
       {Nombre: "Chocolate sin gluten", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
       {Nombre: "Rellena de natilla", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
     ]))
+
+    localStorage.setItem("carrito",JSON.stringify([{Nombre:"Canela",
+      Cantidad: 2,
+      Medida: "pz",
+      Costo: 100}]))
     
     localStorage.setItem("productos",JSON.stringify([
       {Nombre: "Harina", Cantidad: 30, Cuantidad:"Kg"},

@@ -8,11 +8,15 @@ const Ventas = () => {
     const [galletas, setGalletas] = React.useState([])
     const [galletas1, setGalletas1] = React.useState([])
     const [galletas2, setGalletas2] = React.useState([])
-    const [galletaSel, setGalletaSel] = React.useState({})
+    const [galletaSel1, setGalletaSel1] = React.useState({})
     const [nomGalletaSel, setNomGalletaSel] = React.useState("Seleccione una Galleta")
     //const [costGalletaSel, setCostGalletaSel] = React.useState("")
     const [opcionCantidad, setOpcionCantidad] = React.useState("")
     const [cantidad, setCantidad] = React.useState("")
+
+    const [listCarrito,setListCarrito]= React.useState([]);
+
+    
 
     const obtenerGalletas = async () => {
         let galletas = [];
@@ -43,62 +47,86 @@ const Ventas = () => {
     }
 
 
+   const obtenerCarrito = ()=>{
+    setListCarrito(JSON.parse(localStorage.getItem('carrito')))
+   }
 
     React.useEffect(() => {
         //dividirGalletas()
         obtenerGalletas();
+        obtenerCarrito();
     }, [])
 
     React.useEffect(() => {
 
     }, [nomGalletaSel])
 
+    React.useEffect(() => {
+
+    }, [listCarrito])
+
+    React.useEffect(() => {
+
+    }, [galletaSel1])
+
     const seleccionarGalleta = (galletaSel) => {
         console.log(galletaSel);
         setNomGalletaSel(galletaSel.Nombre);
-        setGalletaSel(galletaSel);
+        setGalletaSel1(galletaSel);
         //setCostGalletaSel(costo);
     }
 
    const agregarCarrito = () => {
    // galletaSel
         let carrito = [];
-       // carrito = JSON.parse(localStorage.getItem('carrito'));
+       carrito = JSON.parse(localStorage.getItem('carrito'));
         let precio=0;
         let medida;
         let totalCantidad;
+        console.log("galletas pasada:");
+        console.log(galletaSel1);
         if(opcionCantidad === "dinero"){
            precio= cantidad;
             medida="Kg";
-            totalCantidad= cantidad/galletaSel.PrecioPeso;
+            totalCantidad= cantidad/galletaSel1.PrecioPeso;
         }else if(opcionCantidad === "piezas"){
-            precio= cantidad*galletaSel.PrecioUnidad;
+            precio= cantidad*galletaSel1.PrecioUnidad;
             medida="Pz";
             totalCantidad=cantidad;
         }else if(opcionCantidad === "kilos"){
-            precio= cantidad*galletaSel.PrecioPeso;
+            precio= cantidad*galletaSel1.PrecioPeso;
             medida="Kg";
             totalCantidad=cantidad;
         }else if(opcionCantidad === "paquetes"){
-            precio= cantidad*galletaSel.PrecioPaquete;
+            precio= cantidad*galletaSel1.PrecioPaquete;
             medida="Paq";
             totalCantidad=cantidad;
         }
         let galletaCarrito = {
             Nombre: nomGalletaSel,
-            Cantidad: cantidad,
-            medida: medida,
-            costo: precio,
+            Cantidad: totalCantidad,
+            Medida: medida,
+            Costo: precio,
         }
         carrito.push(galletaCarrito);
         localStorage.setItem('carrito', JSON.stringify(carrito));
+        obtenerCarrito();
         console.log(carrito);
+    }
+
+   const realizarVenta = () => {
+    //localStorage.setItem('carrito', "nose");	
+    localStorage.setItem("carrito",JSON.stringify([{Nombre:"Canela",
+      Cantidad: 2,
+      Medida: "pz",
+      Costo: 100}]))
+    console.log("limpio");
     }
 
 
 
     return (
-        <div class="container">
+        <div class="container row">
             <div class="row mx-auto">
                 <div class="col-1">
                     <Link to={"/Venta"}><button class='botonRegresar'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back" width="50" height="50"
@@ -214,10 +242,22 @@ const Ventas = () => {
                         <div>
                             <h3>Lista de compra</h3>
                             <div class="row">
+                            <ul class="list-group list-group-flush">
+                
+                                {
+                                listCarrito.map((listcar) => {
+                                    return (
+                                        <>
+                                            <li class="list-group-item">{listcar.Nombre} {listcar.Cantidad} {listcar.Medida} ${listcar.Costo}</li>
+                                        </> 
+                                    )
+                                })
+                                }
+                                </ul>
+                                {/* <label>galleta piezas precio</label>
                                 <label>galleta piezas precio</label>
                                 <label>galleta piezas precio</label>
-                                <label>galleta piezas precio</label>
-                                <label>galleta piezas precio</label>
+                                <label>galleta piezas precio</label> */}
                             </div>
                             <div>
                                 <div>
@@ -232,7 +272,7 @@ const Ventas = () => {
                                     <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-percent" viewBox="0 0 16 16">
                                         <path d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
                                     </svg></button>
-                                    <button>Vender <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                    <button onClick={(e)=>{realizarVenta()}}>Vender <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
                                         <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
                                     </svg></button>
                                 </div>
