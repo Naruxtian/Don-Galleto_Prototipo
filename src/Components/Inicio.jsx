@@ -7,16 +7,16 @@ const Inicio = () => {
   const inicializarDatos = () => {
     
     localStorage.setItem("galletas",JSON.stringify([
-      {Nombre: "Canela", Cantidad: 300},
-      {Nombre: "Mantequilla", Cantidad: 300},
-      {Nombre: "Chocolate", Cantidad: 300},
-      {Nombre: "Pasas y avena", Cantidad: 300},
-      {Nombre: "Rellena de naranja", Cantidad: 300},
-      {Nombre: "Integral", Cantidad: 300},
-      {Nombre: "Mantequilla con fresa", Cantidad: 300},
-      {Nombre: "Chocolate con nueces", Cantidad: 300},
-      {Nombre: "Chocolate sin gluten", Cantidad: 300},
-      {Nombre: "Rellena de natilla", Cantidad: 300},
+      {Nombre: "Canela", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Mantequilla", Cantidad: 300,PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Chocolate", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Pasas y avena", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Rellena de naranja", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Integral", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Mantequilla con fresa", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Chocolate con nueces", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Chocolate sin gluten", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Rellena de natilla", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
     ]))
     
     localStorage.setItem("productos",JSON.stringify([
