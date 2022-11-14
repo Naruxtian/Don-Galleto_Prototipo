@@ -5,6 +5,54 @@
   background-color: rgb(199, 150, 105);
 }
 
+@font-face {
+  font-family: "LEMONMILK-Regular";
+  src: local("LEMONMILK-Regular"), url("assets/LEMONMILK-Regular.otf");
+}
+@font-face {
+  font-family: "Roboto-Light";
+  src: local("Roboto-Light"), url("assets/Roboto-Light.ttf");
+}
+h1 {
+  font-family: "LEMONMILK-Regular";
+}
+h2 {
+  font-family: "LEMONMILK-Regular";
+}
+h3 {
+  font-family: "LEMONMILK-Regular";
+}
+h4 {
+  font-family: "LEMONMILK-Regular";
+}
+h5 {
+  font-family: "LEMONMILK-Regular";
+}
+h6 {
+  font-family: "LEMONMILK-Regular";
+}
+p {
+  font-family: "Roboto-Light";
+}
+div {
+  font-family: "Roboto-Light";
+}
+button {
+  font-family: "Roboto-Light";
+}
+table {
+  font-family: "Roboto-Light";
+}
+li {
+  font-family: "Roboto-Light";
+}
+ul{
+  font-family: "Roboto-Light";
+}
+input {
+  font-family: "Roboto-Light";
+}
+
 .botonSeccion {
   border: 1px solid black;
   border-radius: 10px;
