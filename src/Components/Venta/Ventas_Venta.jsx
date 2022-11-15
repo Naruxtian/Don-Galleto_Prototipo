@@ -14,7 +14,9 @@ const Ventas = () => {
     const [galletaSel1, setGalletaSel1] = React.useState({})
     const [nomGalletaSel, setNomGalletaSel] = React.useState("Seleccione una Galleta")
     //const [costGalletaSel, setCostGalletaSel] = React.useState("")
-    const [opcionCantidad, setOpcionCantidad] = React.useState("")
+    const [opcionCantidad, setOpcionCantidad] = React.useState("dinero")
+    const [opcionCantidadSigno, setOpcionCantidadSigno] = React.useState("$")
+
     const [cantidad, setCantidad] = React.useState("")
 
     const [listCarrito,setListCarrito]= React.useState([]);
@@ -73,6 +75,21 @@ const Ventas = () => {
      setTotal(nTotal)
     }
    
+
+    const opcionCantidadChange = (medida) => {
+        console.log(medida)
+        setOpcionCantidad(medida)
+        if (medida === "dinero") {
+        setOpcionCantidadSigno("$")
+        }else if(medida === "piezas"){
+        setOpcionCantidadSigno("Piezas:")
+        }else if(medida === "paquetes"){
+        setOpcionCantidadSigno("P:")
+        }else if(medida === "kilos"){
+        setOpcionCantidadSigno("Kg:")
+        }
+
+    }
 
     React.useEffect(() => {
         //dividirGalletas()
@@ -296,7 +313,7 @@ const Ventas = () => {
                     <button class='botonSeccion2'>Rellens de natilla<br />(GALLETA)</button> */}
                 </div>
                 <div class="col-4">
-                    <h4>{nomGalletaSel}</h4>
+                    <h6>{nomGalletaSel}</h6>
                     <div class='divSeccion'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="200" height="200" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M8 13v.01"></path>
@@ -309,23 +326,25 @@ const Ventas = () => {
                     <div class="row">
                         <div class="row mx-auto">
                             <div class="col-7">
-                                <button class='botonOpcion' onClick={(e)=>{setOpcionCantidad("dinero")}}>Cant/dinero</button>
+                                <button class='botonOpcion' onClick={(e)=>{opcionCantidadChange("dinero")}}>Cant/dinero</button>
                             </div>
                             <div class="col-2">
-                                <button class='botonOpcion' onClick={(e)=>{setOpcionCantidad("piezas")}}>Piezas</button>
+                                <button class='botonOpcion' onClick={(e)=>{opcionCantidadChange("piezas")}}>Piezas</button>
                             </div>
                         </div>
                         <div class="row mx-auto">
                             <div class="col-7">
-                                <button class='botonOpcion' onClick={(e)=>{setOpcionCantidad("kilos")}}>Peso</button>
+                                <button class='botonOpcion' onClick={(e)=>{opcionCantidadChange("kilos")}}>Peso</button>
                             </div>
                             <div class="col-2">
-                                <button class='botonOpcion' onClick={(e)=>{setOpcionCantidad("paquetes")}}>Paquetes</button>
+                                <button class='botonOpcion' onClick={(e)=>{opcionCantidadChange("paquetes")}}>Paquetes</button>
                             </div>
                         </div>
                         <div class="row mx-auto">
                             <div class="col-7" >
-                                <h3>$</h3><input type="number" style={{width:"70px"}} onChange={(e)=>{setCantidad(event.target.value)}}/>
+                                <div style={{display: 'inline-flex'}}>
+                                <h3>{opcionCantidadSigno}</h3><input type="number" style={{width:"70px"}} onChange={(e)=>{setCantidad(event.target.value)}}/>
+                                </div>
                             </div>
                             <div class="col-2 mt-2">
                                 <button class='botonOpcion' onClick={(e)=>{agregarCarrito()}}>Agregar <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
