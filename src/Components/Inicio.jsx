@@ -24,6 +24,11 @@ const Inicio = () => {
       Medida: "pz",
       Costo: 100}]))
     
+      localStorage.setItem("ventas",JSON.stringify([{Nombre:"Canela",
+      Cantidad: 2,
+      Medida: "pz",
+      Costo: 100,Fecha:"2021-05-01"}]))
+
     localStorage.setItem("productos",JSON.stringify([
       {Nombre: "Harina", Cantidad: 30, Cuantidad:"Kg"},
       {Nombre: "Leche", Cantidad: 12, Cuantidad:"L"},

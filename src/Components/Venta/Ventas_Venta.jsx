@@ -134,14 +134,81 @@ const Ventas = () => {
         console.log(carrito);
     }
 
-   const realizarVenta = () => {
-    let venta=[];
-    let carrito=[];
-    carrito = listCarrito;
-    venta = JSON.parse(localStorage.getItem('venta'));
     
+   const realizarVenta = () => {
+    let venta1=[];
+    let carrito=[];
+    let ventacarro = [];
+    let galletas=[];
+    galletas = JSON.parse(localStorage.getItem('galletas'));
+    carrito = listCarrito;
+    let venta = JSON.parse(localStorage.getItem('ventas'));
+    carrito.map((galletaCar) => {
+       if(galletaCar.Medida === "Kg"){
+        let galletaVenta = {
+            Nombre: galletaCar.Nombre,
+            Cantidad: galletaCar.Cantidad,
+            Medida: galletaCar.Medida,
+            Costo: galletaCar.Costo,
+            Fecha: new Date().toLocaleDateString()
+        }
+        console.log(galletaVenta)
+        venta1.push(galletaVenta);
+        galletaCar.Cantidad = galletaCar.Cantidad*40;
+        galletaCar.Cantidad = galletaCar.Cantidad.toFixed(0);
+        let galletaCarrito = {
+            Nombre: galletaCar.Nombre,
+            Cantidad: galletaCar.Cantidad,
+        };
+        ventacarro.push(galletaCarrito);
+       }else if(galletaCar.Medida === "Pz"){
+        let galletaVenta = {
+            Nombre: galletaCar.Nombre,
+            Cantidad: galletaCar.Cantidad,
+            Medida: galletaCar.Medida,
+            Costo: galletaCar.Costo,
+            Fecha: new Date().toLocaleDateString(),
+        }
+        console.log(galletaVenta)
+        venta1.push(galletaVenta);
+        let galletaCarrito = {
+            Nombre: galletaCar.Nombre,
+            Cantidad: galletaCar.Cantidad,
+        };
+        ventacarro.push(galletaCarrito);
+         }else if(galletaCar.Medida === "Paq"){
+            let galletaVenta = {
+                Nombre: galletaCar.Nombre,
+                Cantidad: galletaCar.Cantidad,
+                Medida: galletaCar.Medida,
+                Costo: galletaCar.Costo,
+                Fecha: new Date().toLocaleDateString(),
+            }
+            console.log(galletaVenta)
+            venta1.push(galletaVenta);
+            let galletaCarrito = {
+                Nombre: galletaCar.Nombre,
+                Cantidad: galletaCar.Cantidad,
+            };
+            ventacarro.push(galletaCarrito);
+            }
+            
+    })
+     
+    venta = venta1
 
+    ventacarro.map((galletaCar) => {
+        galletas.map((galleta) => {
+            if(galleta.Nombre === galletaCar.Nombre){
+                galleta.Cantidad = galleta.Cantidad - galletaCar.Cantidad;
+            }
+        })
+    }) 
+     localStorage.setItem('ventas', JSON.stringify(venta));
+     localStorage.setItem('galletas', JSON.stringify(galletas));
     //localStorage.setItem('carrito', "nose");	
+    console.log(localStorage.getItem('ventas'));
+    console.log(localStorage.getItem('galletas'));
     localStorage.setItem("carrito",JSON.stringify([{Nombre:"Canela",
       Cantidad: 2,
       Medida: "pz",
@@ -153,7 +220,7 @@ const Ventas = () => {
 
     return (
         <div class="container row">
-            <div class="row mx-auto">
+            <div class="row ">
                 <div class="col-1">
                     <Link to={"/Venta"}><button class='botonRegresar'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back" width="50" height="50"
                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none">
@@ -166,15 +233,15 @@ const Ventas = () => {
             </div>
             <br />
             <br />
-            <div class="row mx-auto">
-                <div class="col-2">
+            <div class="row marginVentas">
+                <div class="col-2 ">
                     {
                         galletas1.map((galleta1) => {
                             return (
                                 <>
-                                    <button class='botonSeccion2' onClick={(e) => { seleccionarGalleta(galleta1) }}>{galleta1.Nombre}
+                                    <button class='botonSeccion21' onClick={(e) => { seleccionarGalleta(galleta1) }}>{galleta1.Nombre}
                                         <br />
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="50" height="50" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="35" height="35" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M8 13v.01"></path>
                                             <path d="M12 17v.01"></path>
@@ -198,9 +265,9 @@ const Ventas = () => {
                         galletas2.map((galleta2) => {
                             return (
                                 <>
-                                    <button class='botonSeccion2' onClick={(e) => { seleccionarGalleta(galleta2) }}>{galleta2.Nombre}
+                                    <button class='botonSeccion21' onClick={(e) => { seleccionarGalleta(galleta2) }}>{galleta2.Nombre}
                                         <br />
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="50" height="50" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="35" height="35" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M8 13v.01"></path>
                                             <path d="M12 17v.01"></path>
@@ -220,7 +287,7 @@ const Ventas = () => {
                     <button class='botonSeccion2'>Rellens de natilla<br />(GALLETA)</button> */}
                 </div>
                 <div class="col-4">
-                    <h2>{nomGalletaSel}</h2>
+                    <h4>{nomGalletaSel}</h4>
                     <div class='divSeccion'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="200" height="200" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M8 13v.01"></path>
