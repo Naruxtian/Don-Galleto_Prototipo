@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import '../../App.css'
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Ventas = () => {
 
+    const MySwal = withReactContent(Swal);
 
     const [galletas, setGalletas] = React.useState([])
     const [galletas1, setGalletas1] = React.useState([])
@@ -186,6 +189,7 @@ const Ventas = () => {
             }
             console.log(galletaVenta)
             venta1.push(galletaVenta);
+            galletaCar.Cantidad = galletaCar.Cantidad*40;
             let galletaCarrito = {
                 Nombre: galletaCar.Nombre,
                 Cantidad: galletaCar.Cantidad,
@@ -206,6 +210,11 @@ const Ventas = () => {
     }) 
      localStorage.setItem('ventas', JSON.stringify(venta));
      localStorage.setItem('galletas', JSON.stringify(galletas));
+     Swal.fire({
+        icon: "success",
+        title: "Venta realizada",
+        text: "La venta se realizo correctamente",
+    });
     //localStorage.setItem('carrito', "nose");	
     console.log(localStorage.getItem('ventas'));
     console.log(localStorage.getItem('galletas'));
