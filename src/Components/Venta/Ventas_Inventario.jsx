@@ -55,6 +55,19 @@ const Inventario = () => {
     obtenerGalletas();
   }, []);
 
+  const calculateAlert = (Cantidad) => {
+    let alert = "";
+
+    if(Cantidad >= 150){
+        alert = "cardGalleta fs-4 btn colorOscuro galletaBien";
+    }else if(Cantidad > 50 && Cantidad < 150){
+        alert = "cardGalleta fs-4 btn colorOscuro galletaAlerta";
+    }else{
+        alert = "cardGalleta fs-4 btn colorOscuro galletaPoco";
+    }
+    return alert;
+}
+
   return (
     <div class="container">
       <div class="row mx-auto">
@@ -91,11 +104,11 @@ const Inventario = () => {
             merma ? (
 
                 galletas.map((galleta) => {
-
+                    const alert = calculateAlert(galleta.Cantidad);
                     let merm=0;
                     return (
                       <div
-                        class="cardGalleta fs-4 btn btn-outline-light btn-light colorOscuro"
+                        class={alert}
                       >
                         <p>{galleta.Nombre}</p>
                         <svg
@@ -136,9 +149,10 @@ const Inventario = () => {
             ) : (
                 
                 galletas.map((galleta) => {
+                  const alert = calculateAlert(galleta.Cantidad);
                     return (
                       <div
-                        class="cardGalleta fs-4 btn btn-outline-light btn-light colorOscuro"
+                        class={alert}
                       >
                         <p>{galleta.Nombre}</p>
                         <svg

@@ -391,3 +391,19 @@ input {
   width: 5rem;
   font-size: 1rem;
 }
+
+.galletaBien{
+  background-color: #D0E6DD;
+}
+
+.galletaAlerta{
+  background-color: #FFF3CD;
+}
+
+.galletaPoco{
+  background-color: #F8D7DA;
+}
+
+.logo{
+  filter: drop-shadow(5px 10px 20px #222);
+}
