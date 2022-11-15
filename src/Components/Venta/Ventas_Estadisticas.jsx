@@ -3,6 +3,20 @@ import { Link } from "react-router-dom";
 import '../../App.css'
 
 const InicioVentas = () => {
+    const [galletas, setGalletas] = React.useState([]);
+    const [utilidad, setUtilidad] = React.useState(0);
+    const [date, setDate] = React.useState(new Date());
+
+    const obtenerGalletas =  () => {
+        let gall= []
+        gall = JSON.parse(localStorage.getItem('galletas'))
+        setGalletas(gall)
+    }
+
+    React.useEffect(() => {
+        obtenerGalletas()
+    }, [])
+
     return (
         <div class="container">
             <div class="row mx-auto">
@@ -12,13 +26,12 @@ const InicioVentas = () => {
                         </path><path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1"></path>
                     </svg></button></Link>
                 </div>
-                <div class="col-8">
-                    <h1 class="fs-1">Estadisticas: 07/11/22(Funcion)</h1>
+                <div class="col-10">
+                    <h1 class="fs-1">Estadisticas: {date.getDate()}/{date.getMonth()+1}/{date.getFullYear()} </h1>
                 </div>
             </div>
             <br />
-            <h3>Ganancias del dia: $7000(Funcion)</h3>
-            <br />
+            <h3>Ganancias del dia: $20000</h3>
             <div class="row mx-auto">
                 <table class="table table-striped table-bordered table-light">
                     <thead>
@@ -33,33 +46,22 @@ const InicioVentas = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Canela</td>
-                            <td>800</td>
-                            <td>300</td>
-                            <td>0</td>
-                            <td>1500</td>
-                            <td>500</td>
-                            <td>1000</td>
-                        </tr>
-                        <tr>
-                            <td>Mantequilla</td>
-                            <td>500</td>
-                            <td>100</td>
-                            <td>10</td>
-                            <td>500</td>
-                            <td>170</td>
-                            <td>280</td>
-                        </tr>
-                        <tr>
-                            <td>Chocolate</td>
-                            <td>***</td>
-                            <td>***</td>
-                            <td>***</td>
-                            <td>***</td>
-                            <td>***</td>
-                            <td>***</td>
-                        </tr>
+                        {
+                            galletas.map((galleta, index) => {
+                                
+                                return (
+                                    <tr>
+                                        <td>{galleta.Nombre}</td>
+                                        <td>{galleta.Cantidad}</td>
+                                        <td>800</td>
+                                        <td>0</td>
+                                        <td>$7000</td>
+                                        <td>$5000</td>
+                                        <td>$2000</td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </table>
             </div>
