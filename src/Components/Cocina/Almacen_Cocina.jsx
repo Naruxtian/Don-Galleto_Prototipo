@@ -21,7 +21,7 @@ const Inicio = () => {
         products = JSON.parse(localStorage.getItem('productos'));
         products.forEach(producto => {
             if(producto.Nombre === nombre){
-                if(merma >= 0){
+                if(merma > 0){
                 if(producto.Cantidad >= merma){
                     producto.Cantidad = producto.Cantidad - merma;  
                       Swal.fire({
@@ -38,7 +38,7 @@ const Inicio = () => {
                 }}else{
                     MySwal.fire({
                         title: <strong>Error</strong>,
-                        html: <i>La merma no puede ser un numero negativo</i>,
+                        html: <i>Seleccione valores validos para mermar</i>,
                         icon: 'error'
                     })  
                 }

@@ -23,9 +23,10 @@ const Inventario = () => {
     galletas = JSON.parse(localStorage.getItem("galletas"));
     galletas.forEach(galleta => {
         if (galleta.Nombre === nombre) {
-            if (merma >= 0) {
+            if (merma > 0) {
                 if (galleta.Cantidad >= merma) {
                     galleta.Cantidad = galleta.Cantidad - merma;
+                    galleta.mermadas = galleta.mermadas + (merma * 1);
                     Swal.fire({
                         icon: "success",
                         title: "Galleta mermada",
@@ -41,7 +42,7 @@ const Inventario = () => {
             } else {
                 MySwal.fire({
                     title: <strong>Error</strong>,
-                    html: <i>La merma no puede ser un numero negativo</i>,
+                    html: <i>Seleccione valores validos para mermar</i>,
                     icon: "error",
                 });
             }

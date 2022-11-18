@@ -213,7 +213,9 @@ input {
   /*float:right,*/
   align-items: center;
   background-color: rgb(255, 255, 255);
-  height: 100vh;
+  height: 90vh;
+  border: 3px solid #222;
+  border-radius: 10px;
 }
 .botonOpcion{
   align-self: center;

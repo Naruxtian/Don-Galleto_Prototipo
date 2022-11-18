@@ -4,7 +4,7 @@ import '../../App.css'
 
 const InicioVentas = () => {
     const [galletas, setGalletas] = React.useState([]);
-    const [utilidad, setUtilidad] = React.useState(0);
+    const [ganancias, setGanancias] = React.useState(0);
     const [date, setDate] = React.useState(new Date());
 
     const obtenerGalletas =  () => {
@@ -13,9 +13,24 @@ const InicioVentas = () => {
         setGalletas(gall)
     }
 
+    const calcularGanancias = () => {
+        let gn = 0;
+        galletas.forEach(galleta => {
+            const ventas = galleta.vendidas * galleta.PrecioUnidad;
+            const insumos = (galleta.cocinadas * galleta.insumos)/25;
+            const utilidad = ventas - insumos;
+            gn += utilidad
+        });
+        setGanancias(gn)
+    }
+
     React.useEffect(() => {
         obtenerGalletas()
     }, [])
+
+    React.useEffect(() => {
+        calcularGanancias()
+    }, [galletas])
 
     return (
         <div class="container">
@@ -31,10 +46,10 @@ const InicioVentas = () => {
                 </div>
             </div>
             <br />
-            <h3>Ganancias del dia: $20000</h3>
+            <h3>Ganancias del dia: ${ganancias}</h3>
             <div class="row mx-auto">
                 <table class="table table-striped table-bordered table-light">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
                             <th scope="col">Galleta</th>
                             <th scope="col">Cocinadas</th>
@@ -48,16 +63,18 @@ const InicioVentas = () => {
                     <tbody>
                         {
                             galletas.map((galleta, index) => {
-                                
+                                const ventas = galleta.vendidas * galleta.PrecioUnidad;
+                                const insumos = (galleta.cocinadas * galleta.insumos)/25;
+                                const utilidad = ventas - insumos;
                                 return (
                                     <tr>
                                         <td>{galleta.Nombre}</td>
-                                        <td>{galleta.Cantidad}</td>
-                                        <td>800</td>
-                                        <td>0</td>
-                                        <td>$7000</td>
-                                        <td>$5000</td>
-                                        <td>$2000</td>
+                                        <td>{galleta.cocinadas}</td>
+                                        <td>{galleta.vendidas}</td>
+                                        <td>{galleta.mermadas}</td>
+                                        <td>{ventas}</td>
+                                        <td>{insumos}</td>
+                                        <td>{utilidad}</td>
                                     </tr>
                                 )
                             })

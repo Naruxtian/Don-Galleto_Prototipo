@@ -5,9 +5,6 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const Ventas = () => {
-
-    const MySwal = withReactContent(Swal);
-
     const [galletas, setGalletas] = React.useState([])
     const [galletas1, setGalletas1] = React.useState([])
     const [galletas2, setGalletas2] = React.useState([])
@@ -117,6 +114,8 @@ const Ventas = () => {
     }
 
    const agregarCarrito = () => {
+    const MySwal = withReactContent(Swal)
+
    // galletaSel
         let carrito = [];
        carrito = JSON.parse(localStorage.getItem('carrito'));
@@ -124,34 +123,50 @@ const Ventas = () => {
         let medida;
         let totalCantidad;
         console.log("galletas pasada:");
-        console.log(galletaSel1);
-        if(opcionCantidad === "dinero"){
-           precio= cantidad;
-            medida="Kg";
-            totalCantidad= cantidad/galletaSel1.PrecioPeso;
-        }else if(opcionCantidad === "piezas"){
-            precio= cantidad*galletaSel1.PrecioUnidad;
-            medida="Pz";
-            totalCantidad=cantidad;
-        }else if(opcionCantidad === "kilos"){
-            precio= cantidad*galletaSel1.PrecioPeso;
-            medida="Kg";
-            totalCantidad=cantidad;
-        }else if(opcionCantidad === "paquetes"){
-            precio= cantidad*galletaSel1.PrecioPaquete;
-            medida="Paq";
-            totalCantidad=cantidad;
-        }
-        let galletaCarrito = {
-            Nombre: nomGalletaSel,
-            Cantidad: totalCantidad,
-            Medida: medida,
-            Costo: precio,
-        }
-        carrito.push(galletaCarrito);
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-        obtenerCarrito();
-        console.log(carrito);
+
+        if(galletaSel1.Nombre != undefined){
+            if(cantidad != "" && cantidad > 0){
+                if(opcionCantidad === "dinero"){
+                precio= cantidad;
+                    medida="Kg";
+                    totalCantidad= cantidad/galletaSel1.PrecioPeso;
+                }else if(opcionCantidad === "piezas"){
+                    precio= cantidad*galletaSel1.PrecioUnidad;
+                    medida="Pz";
+                    totalCantidad=cantidad;
+                }else if(opcionCantidad === "kilos"){
+                    precio= cantidad*galletaSel1.PrecioPeso;
+                    medida="Kg";
+                    totalCantidad=cantidad;
+                }else if(opcionCantidad === "paquetes"){
+                    precio= cantidad*galletaSel1.PrecioPaquete;
+                    medida="Paq";
+                    totalCantidad=cantidad;
+                }
+                let galletaCarrito = {
+                    Nombre: nomGalletaSel,
+                    Cantidad: totalCantidad,
+                    Medida: medida,
+                    Costo: precio,
+                }
+                carrito.push(galletaCarrito);
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                obtenerCarrito();
+                console.log(carrito);
+            }else{
+                MySwal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Seleccione valores validos para agregar',
+                })
+            }
+        }else{
+            MySwal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor seleccione una galleta',
+            })
+            }
     }
 
     
@@ -163,6 +178,7 @@ const Ventas = () => {
     galletas = JSON.parse(localStorage.getItem('galletas'));
     carrito = listCarrito;
     let venta = JSON.parse(localStorage.getItem('ventas'));
+    
     carrito.map((galletaCar) => {
        if(galletaCar.Medida === "Kg"){
         let galletaVenta = {
@@ -214,10 +230,20 @@ const Ventas = () => {
             ventacarro.push(galletaCarrito);
             }
             
-    })
-     
+    })   
     venta = venta1
+    let  vd = 0;
+    ventacarro.map((galletaCar) => {
+        galletas.map((galleta) => {
+            if(galleta.Nombre === galletaCar.Nombre){
+                if(galleta.Cantidad < galletaCar.Cantidad){
+                    vd++;
+                }
+            }
+        })
+    }) 
 
+    if(vd == 0){
     ventacarro.map((galletaCar) => {
         galletas.map((galleta) => {
             if(galleta.Nombre === galletaCar.Nombre){
@@ -235,11 +261,17 @@ const Ventas = () => {
     //localStorage.setItem('carrito', "nose");	
     console.log(localStorage.getItem('ventas'));
     console.log(localStorage.getItem('galletas'));
-    localStorage.setItem("carrito",JSON.stringify([{Nombre:"Canela",
-      Cantidad: 2,
-      Medida: "pz",
-      Costo: 100}]))
+    localStorage.setItem("carrito",JSON.stringify([]))
+    obtenerCarrito();
+    obtenerTotal();
     console.log("limpio");
+}else{
+    Swal.fire({
+        icon: "error",
+        title: "Imposible",
+        text: "No hay suficientes galletas en inventario",
+    });
+}
     }
 
 
@@ -314,7 +346,7 @@ const Ventas = () => {
                 </div>
                 <div class="col-4">
                     <h6>{nomGalletaSel}</h6>
-                    <div class='divSeccion'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="200" height="200" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cookie" width="200" height="200" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M8 13v.01"></path>
                         <path d="M12 17v.01"></path>
@@ -322,7 +354,7 @@ const Ventas = () => {
                         <path d="M16 14v.01"></path>
                         <path d="M11 8v.01"></path>
                         <path d="M13.148 3.476l2.667 1.104a4 4 0 0 0 4.656 6.14l.053 .132a3 3 0 0 1 0 2.296c-.497 .786 -.838 1.404 -1.024 1.852c-.189 .456 -.409 1.194 -.66 2.216a3 3 0 0 1 -1.624 1.623c-1.048 .263 -1.787 .483 -2.216 .661c-.475 .197 -1.092 .538 -1.852 1.024a3 3 0 0 1 -2.296 0c-.802 -.503 -1.419 -.844 -1.852 -1.024c-.471 -.195 -1.21 -.415 -2.216 -.66a3 3 0 0 1 -1.623 -1.624c-.265 -1.052 -.485 -1.79 -.661 -2.216c-.198 -.479 -.54 -1.096 -1.024 -1.852a3 3 0 0 1 0 -2.296c.48 -.744 .82 -1.361 1.024 -1.852c.171 -.413 .391 -1.152 .66 -2.216a3 3 0 0 1 1.624 -1.623c1.032 -.256 1.77 -.476 2.216 -.661c.458 -.19 1.075 -.531 1.852 -1.024a3 3 0 0 1 2.296 0z"></path>
-                    </svg></div><br />
+                    </svg><br />
                     <div class="row">
                         <div class="row mx-auto">
                             <div class="col-7">
@@ -343,7 +375,7 @@ const Ventas = () => {
                         <div class="row mx-auto">
                             <div class="col-7" >
                                 <div style={{display: 'inline-flex'}}>
-                                <h3>{opcionCantidadSigno}</h3><input type="number" style={{width:"70px"}} onChange={(e)=>{setCantidad(event.target.value)}}/>
+                                <h3>{opcionCantidadSigno}</h3><input type="number" style={{width:"70px"}} onChange={(e)=>{setCantidad(event.target.value)}} min={0}/>
                                 </div>
                             </div>
                             <div class="col-2 mt-2">

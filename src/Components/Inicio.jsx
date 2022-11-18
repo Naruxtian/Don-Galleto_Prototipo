@@ -8,16 +8,16 @@ const Inicio = () => {
   const inicializarDatos = () => {
     
     localStorage.setItem("galletas",JSON.stringify([
-      {Nombre: "Canela", Cantidad: 200, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
-      {Nombre: "Mantequilla", Cantidad: 140, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
-      {Nombre: "Chocolate", Cantidad: 100, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
-      {Nombre: "Pasas y avena", Cantidad: 300, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
-      {Nombre: "Rellena de naranja", Cantidad: 150, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
-      {Nombre: "Integral", Cantidad: 280, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
-      {Nombre: "Mantequilla con fresa", Cantidad: 30, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
-      {Nombre: "Chocolate con nueces", Cantidad: 40, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
-      {Nombre: "Chocolate sin gluten", Cantidad: 200, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
-      {Nombre: "Rellena de natilla", Cantidad: 140, PrecioPaquete: 50, PrecioUnidad: 3, PrecioPeso: 25},
+      {Nombre: "Canela", Cantidad: 200, PrecioPaquete: 50, PrecioUnidad: 10, PrecioPeso: 25, cocinadas:200, vendidas: 120, mermadas: 0, insumos: 50},
+      {Nombre: "Mantequilla", Cantidad: 140, PrecioPaquete: 50, PrecioUnidad: 10, PrecioPeso: 25, cocinadas:140, vendidas: 60, mermadas: 0, insumos: 50},
+      {Nombre: "Chocolate", Cantidad: 100, PrecioPaquete: 50, PrecioUnidad: 15, PrecioPeso: 25, cocinadas:100, vendidas: 85, mermadas: 0, insumos: 25},
+      {Nombre: "Pasas y avena", Cantidad: 200, PrecioPaquete: 50, PrecioUnidad: 10, PrecioPeso: 25, cocinadas:200, vendidas: 100, mermadas: 0, insumos: 30},
+      {Nombre: "Rellena de naranja", Cantidad: 150, PrecioPaquete: 50, PrecioUnidad: 15, PrecioPeso: 25, cocinadas:150, vendidas: 75, mermadas: 0, insumos: 40},
+      {Nombre: "Integral", Cantidad: 200, PrecioPaquete: 50, PrecioUnidad: 10, PrecioPeso: 25, cocinadas:200, vendidas: 80, mermadas: 0, insumos: 60},
+      {Nombre: "Mantequilla con fresa", Cantidad: 30, PrecioPaquete: 50, PrecioUnidad: 10, PrecioPeso: 25, cocinadas:30, vendidas: 170, mermadas: 0, insumos: 55},
+      {Nombre: "Chocolate con nueces", Cantidad: 40, PrecioPaquete: 50, PrecioUnidad: 15, PrecioPeso: 25, cocinadas:40, vendidas: 160, mermadas: 0, insumos: 30},
+      {Nombre: "Chocolate sin gluten", Cantidad: 200, PrecioPaquete: 50, PrecioUnidad: 20, PrecioPeso: 25, cocinadas:200, vendidas: 120, mermadas: 0, insumos: 80},
+      {Nombre: "Rellena de natilla", Cantidad: 140, PrecioPaquete: 50, PrecioUnidad: 15, PrecioPeso: 25, cocinadas:140, vendidas: 60, mermadas: 0, insumos: 50},
     ]))
 
     localStorage.setItem("carrito",JSON.stringify([{Nombre:"Canela",
